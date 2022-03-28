@@ -7,10 +7,12 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/schoolboybru/git-notifier/cmd"
 	domain "github.com/schoolboybru/git-notifier/internal/domain"
 )
 
 func main() {
+	cmd.Execute()
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", "https://api.github.com/notifications", nil)
@@ -40,5 +42,4 @@ func main() {
 
 	json.Unmarshal(bodyBytes, &notifications)
 	fmt.Printf("API response as struct %+v\n", notifications)
-
 }
